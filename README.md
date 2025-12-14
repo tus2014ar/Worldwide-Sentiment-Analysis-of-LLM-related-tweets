@@ -101,6 +101,3 @@ Key insights:
 Python • Pandas • NLTK • Statsmodels • Plotly • SARIMAX
 
 ---
-
-## 👥 Team
-Tushar • Saakshaat Saini • Julien Hill
