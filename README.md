@@ -6,7 +6,6 @@ Built an end-to-end geospatial sentiment analysis pipeline on 300K+ LLM-related 
 # 🌍 Worldwide Sentiment Analysis of Large Language Models (LLMs)
 
 > End-to-end NLP, geospatial analysis, and time-series forecasting on 305K+ tweets  
-> **Course:** DAAN 545 – Data Mining (Penn State)  
 
 ---
 
