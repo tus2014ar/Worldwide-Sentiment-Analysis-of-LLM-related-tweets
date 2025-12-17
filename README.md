@@ -56,6 +56,7 @@ Key insights:
 - Outputs: sentiment label + compound score
 
 <img src="SentimentbyLocation.jpg" alt="Tweet Counts by Date" width="650">
+<img src="SentimentbyRegion.jpg" alt="Tweet Counts by Date" width="650">
 ---
 
 ## 📈 Modeling
