@@ -68,7 +68,7 @@ Key insights:
 - SARIMAX with weekly seasonality
 - Accurate short-term forecasting
 
-<img src="Forecast.jpg" alt="Tweet Counts by Date" width="650">
+<img src="Forecast.jpg" alt="Time serise forecasting" width="650">
 
 ---
 
@@ -77,6 +77,10 @@ Key insights:
 - Bard/Gemini receives consistently lower sentiment
 - Cybersecurity & education are major concern areas
 
+
+<img src="NegativeSentimentbycountry.jpg" alt="Negative Sentiment USA" width="650">
+
+<img src="Sentimentbycountry.jpg" alt="Negative Sentiment India" width="650">
 ---
 
 ## 🏛 Policy Implications
