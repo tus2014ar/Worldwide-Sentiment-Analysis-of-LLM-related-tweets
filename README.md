@@ -34,7 +34,9 @@ Key insights:
 - Sustained engagement (3K–6K tweets/day)
 - India & USA dominate tweet volume
 
-![EDA](figures/sentiment_distribution.png)
+![Top 15 Locations](Top15location.jpg)
+
+![Tweet Counts by Date](TweetcountvsDate.jpg)
 
 ---
 
