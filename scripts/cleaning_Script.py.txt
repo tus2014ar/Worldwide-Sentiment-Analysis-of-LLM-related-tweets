@@ -1,0 +1,100 @@
+import re
+import time as time_module
+import pandas as pd
+import numpy as np
+from unidecode import unidecode
+from tqdm import tqdm
+
+# Optional geocoding (comment out if not needed / to avoid rate limiting)
+try:
+    from geopy.geocoders import Nominatim
+    from geopy.extra.rate_limiter import RateLimiter
+    GEOCODING_AVAILABLE = True
+except Exception:
+    GEOCODING_AVAILABLE = False
+
+def normalize_location(s):
+    if pd.isna(s):
+        return np.
+    s_norm = unidecode(str(s)).strip().lower()
+    # Collapse multiple spaces and remove trailing punctuation noise
+    s_norm = re.sub(r'\s+', ' ', s_norm)
+    s_norm = s_norm.strip(' .|,;/\\-')
+    return s_norm
+
+def load_data(path_csv):
+    df = pd.read_csv(path_csv)
+    if 'Location_norm' not in df.columns:
+        df['Location_norm'] = df.get('Location', df.columns[0]).apply(normalize_location)
+    return df
+
+def apply_manual_maps(df, source_col, target_col, mapping_dict):
+    out = df[target_col].copy()
+    loc_lower = df['Location_norm'].astype(str)
+    mask_other = out.eq('Other')
+    loc_other = loc_lower[mask_other]
+    for key, val in mapping_dict.items():
+        idx = loc_other[loc_other == key].index
+        if len(idx) > 0:
+            out.loc[idx] = val
+    df[target_col] = out
+    return df
+
+def geocode_candidates(candidates, user_agent, delay=1.5, retries=3, timeout=12):
+    if not GEOCODING_AVAILABLE:
+        return pd.DataFrame(columns=['query','count','country','lat','lon'])
+    geolocator = Nominatim(user_agent=user_agent, timeout=timeout)
+    geocode = RateLimiter(geolocator.geocode, min_delay_seconds=delay, max_retries=retries, swallow_exceptions=True)
+
+    rows = []
+    for q, c in tqdm(candidates, total=len(candidates)):
+        q_norm = unidecode(str(q))
+        loc = None
+        try:
+            loc = geocode(q_norm)
+            time_module.sleep(0.3)
+        except Exception:
+            loc = None
+        if loc is None:
+            rows.append((q, c, None, None, None))
+            continue
+        addr = loc.raw.get('address', {})
+        country_name = addr.get('country')
+        if not country_name:
+            disp = loc.raw.get('display_name', '')
+            if isinstance(disp, str) and ',' in disp:
+                country_name = disp.split(',')[-1].strip()
+        rows.append((q, c, country_name, getattr(loc, 'latitude', None), getattr(loc, 'longitude', None)))
+    return pd.DataFrame(rows, columns=['query','count','country','lat','lon'])
+
+def apply_geocode_map(df, df_geo, target_col, normalization_fix=None):
+    out = df[target_col].copy()
+    loc_lower_all = df['Location_norm'].astype(str)
+    tmp = df_geo.dropna(subset=['country']).copy()
+    tmp['country_norm'] = tmp['country'].astype(str).str.strip()
+    if normalization_fix:
+        tmp['country_final'] = tmp['country_norm'].replace(normalization_fix)
+    else:
+        tmp['country_final'] = tmp['country_norm']
+    for _, r in tmp.iterrows():
+        q_low = str(r['query']).lower().strip()
+        idxs = loc_lower_all[loc_lower_all == q_low].index
+        if len(idxs) > 0 and isinstance(r['country_final'], str) and len(r['country_final']) > 0:
+            out.loc[idxs] = r['country_final']
+    df[target_col] = out
+    return df
+
+def build_candidates_from_other(df, target_col, top_n=200, non_geo_terms=None, require_geo_signal=False):
+    # Identify top-N remaining Other entries
+    mask_other = df[target_col].eq('Other')
+    vc = df.loc[mask_other, 'Location_norm'].value_counts()
+    candidates = []
+    for val, cnt in vc.items():
+        low = str(val)
+        if non_geo_terms and any(t in low for t in non_geo_terms):
+            continue
+        if require_geo_signal:
+            # Keep plausible geo: commas, pipes, short alphabetic tokens, or coordinates
+            has_comma = ',' in low
+            has_pipe = '|' in low
+            has_coords = re.search(r'-?\\d+\\.\\d+\\s*,\\s*-?\\d+\\.\\d+', low▍
