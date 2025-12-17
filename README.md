@@ -69,7 +69,7 @@ Key insights:
 - SARIMAX with weekly seasonality
 - Accurate short-term forecasting
 
-![Forecast](figures/sarimax_forecast.png)
+![Forecast](Top15location.png)
 
 ---
 
