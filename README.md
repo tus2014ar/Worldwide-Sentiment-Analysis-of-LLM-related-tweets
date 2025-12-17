@@ -33,9 +33,10 @@ Key insights:
 - Sharp spike after ChatGPT launch (Dec 2022)
 - Sustained engagement (3K–6K tweets/day)
 - India & USA dominate tweet volume
+---
 <img src="Top15location.jpg" alt="Top 15 location" width="650">
 <img src="TweetcountvsDate.jpg" alt="Tweetcount vs Date" width="650">
----
+
 
 ## 🧹 Data Cleaning & Location Normalization
 **Challenge:**  
