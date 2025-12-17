@@ -28,8 +28,6 @@ How is public sentiment toward Large Language Models evolving **across regions a
 
 ---
 
----
-
 ## 📊 Exploratory Data Analysis
 Key insights:
 - Sharp spike after ChatGPT launch (Dec 2022)
