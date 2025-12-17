@@ -58,8 +58,7 @@ Key insights:
 - Tool: **VADER (NLTK)**
 - Outputs: sentiment label + compound score
 
-![Sentiment by Region](SentimentbyRegion.jpg)
-![Sentiment by Location](SentimentbyLocation.jpg)
+<img src="SentimentbyLocation.jpg" alt="Tweet Counts by Date" width="650">
 ---
 
 ## 📈 Modeling
