@@ -68,11 +68,11 @@ Key insights:
 ### Time Series
 - SARIMAX with weekly seasonality
 - Accurate short-term forecasting
----
+
 <img src="Forecast.jpg" alt="Time serise forecasting" width="650">
 
 
-
+---
 ## 🌎 Key Findings
 - Sentiment declining fastest in **South America**
 - Bard/Gemini receives consistently lower sentiment
