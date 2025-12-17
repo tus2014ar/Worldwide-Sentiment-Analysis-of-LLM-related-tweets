@@ -28,9 +28,6 @@ How is public sentiment toward Large Language Models evolving **across regions a
 
 ---
 
-## 🔁 End-to-End Workflow
-![Workflow](figures/workflow.png)
-
 ---
 
 ## 📊 Exploratory Data Analysis
