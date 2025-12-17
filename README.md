@@ -58,8 +58,8 @@ Key insights:
 - Tool: **VADER (NLTK)**
 - Outputs: sentiment label + compound score
 
-![Heatmap](figures/sentiment_heatmap.png)
-
+![Sentiment by Region](SentimentbyRegion.jpg)
+![Sentiment by Location](SentimentbyLocation.jpg)
 ---
 
 ## 📈 Modeling
