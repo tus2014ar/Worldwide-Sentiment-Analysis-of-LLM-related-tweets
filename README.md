@@ -68,7 +68,7 @@ Key insights:
 - SARIMAX with weekly seasonality
 - Accurate short-term forecasting
 
-![Forecast](Top15location.png)
+<img src="forecast.jpg" alt="Tweet Counts by Date" width="650">
 
 ---
 
