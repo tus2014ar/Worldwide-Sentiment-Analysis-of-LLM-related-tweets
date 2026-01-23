@@ -11,7 +11,7 @@ How is public sentiment toward Large Language Models evolving **across regions a
 ---
 
 ## 🎯 Objectives
-- Monitor sentiment toward LLMs globally
+- Monitor sentiments toward LLMs globally
 - Identify regions with worsening sentiment
 - Detect entities & topics driving concern
 - Support data-driven AI policy decisions
